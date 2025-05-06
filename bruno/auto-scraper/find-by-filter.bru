@@ -1,0 +1,22 @@
+meta {
+  name: find-by-filter
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/auto-scraper/find-by-filter
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "brand": "Kia",
+    "model": "Cerato",
+    "min_year": 2000,
+    "max_year": 2015,
+    "min_price": 10000,
+    "max_price": 15000
+  }
+}
