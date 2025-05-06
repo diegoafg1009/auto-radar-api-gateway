@@ -1,7 +1,9 @@
 package server
 
 import (
+	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -11,10 +13,11 @@ import (
 )
 
 type Server struct {
-	port int
+	port      int
+	apiServer *http.Server
 }
 
-func NewServer() *http.Server {
+func NewServer() *Server {
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
 	NewServer := &Server{
 		port: port,
@@ -29,5 +32,17 @@ func NewServer() *http.Server {
 		WriteTimeout: 30 * time.Second,
 	}
 
-	return server
+	NewServer.apiServer = server
+
+	return NewServer
+}
+
+func (s *Server) ListenAndServe() error {
+	log.Println("Starting server on port", s.port)
+	return s.apiServer.ListenAndServe()
+}
+
+func (s *Server) Shutdown(ctx context.Context) error {
+	log.Println("Shutting down server on port", s.port)
+	return s.apiServer.Shutdown(ctx)
 }

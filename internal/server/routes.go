@@ -3,6 +3,8 @@ package server
 import (
 	"net/http"
 
+	"github.com/diegoafg1009/auto-radar-api-gateway/internal/routers"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -20,15 +22,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 		MaxAge:           300,
 	}))
 
-	e.GET("/", s.HelloWorldHandler)
+	routers.AutoScraper(e)
 
 	return e
-}
-
-func (s *Server) HelloWorldHandler(c echo.Context) error {
-	resp := map[string]string{
-		"message": "Hello World",
-	}
-
-	return c.JSON(http.StatusOK, resp)
 }
