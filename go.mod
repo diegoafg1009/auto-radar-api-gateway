@@ -3,7 +3,7 @@ module github.com/diegoafg1009/auto-radar-api-gateway
 go 1.23.4
 
 require (
-	github.com/diegoafg1009/auto-radar-scraping-microservice v0.0.0-20250506211353-218cf0dbadc8
+	github.com/diegoafg1009/auto-radar-scraping-microservice v0.0.0-20250517043008-4b1fe0f59376
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.13.3
 )
