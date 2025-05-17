@@ -1,0 +1,17 @@
+services:
+  auto-radar-api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 8081
+    environment:
+      - PORT=8081
+      - AUTO_SCRAPER_URL=${AUTO_SCRAPER_URL}
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
