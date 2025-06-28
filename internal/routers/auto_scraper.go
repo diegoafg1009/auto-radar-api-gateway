@@ -17,5 +17,5 @@ func AutoScraper(e *echo.Echo) {
 	client := autoscraperv1connect.NewAutoScraperServiceClient(http.DefaultClient, autoScraperUrl)
 	handler := handlers.NewAutoScraperHandler(client)
 	router := e.Group("/auto-scraper")
-	router.GET("/find-by-filter", handler.FindByFilter)
+	router.POST("/find-by-filter", handler.FindByFilter)
 }
